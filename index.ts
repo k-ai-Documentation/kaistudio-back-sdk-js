@@ -1,58 +1,72 @@
-import {FileInstance} from "./modules/FileInstance";
-import {ManageInstance} from "./modules/ManageInstance";
+import {CoreModule} from "./modules/core/CoreModule";
+import {StudioModule} from "./modules/studio/StudioModule";
+import {FileModule} from "./modules/file/FileModule";
+import {DemoModule} from "./modules/demo/DemoModule";
 
 export interface KaiStudioCredentials {
-    organizationId?: any,
-    instanceId?: any,
-    apiKey?: any,
-    host?: any
+    host?: string;
+    token?: string; // core module do not need token
 }
 
 export class KaiStudio {
 
     private readonly credentials: KaiStudioCredentials;
-    private readonly _fileInstance: FileInstance;
-    private readonly _manageInstance: ManageInstance;
+    private readonly _core: CoreModule;
+    private readonly _studio: StudioModule;
+    private readonly _file: FileModule;
+    private readonly _demo: DemoModule;
 
     constructor(credentials: KaiStudioCredentials) {
-        this.credentials = credentials
-        let headers = {}, baseUrl = ''
-
-        if (this.credentials.instanceId && this.credentials.apiKey) {
-            headers = {
-                'organization-id': this.credentials.organizationId,
-                'instance-id': this.credentials.instanceId,
-                'api-key': this.credentials.apiKey
-            }
-
-            baseUrl = `https://api.kai-studio.ai/`
-        }
+        this.credentials = credentials;
+        let baseUrl = 'https://api.kai-studio.ai/';
 
         if (this.credentials.host) {
-            baseUrl = this.credentials.host
-            if (this.credentials.apiKey) {
-                headers = {
-                    'api-key': this.credentials.apiKey
-                }
-            }
+            baseUrl = this.credentials.host;
         }
 
+        const coreHeaders = {};
+        
+        const authHeaders = {};
+        if (this.credentials.token) {
+            authHeaders['Authorization'] = `Bearer ${this.credentials.token}`;
+        }
 
-        this._manageInstance = new ManageInstance(headers)
-        this._fileInstance = new FileInstance(headers)
+        this._core = new CoreModule(baseUrl, coreHeaders);
+        this._studio = new StudioModule(baseUrl, authHeaders);
+        this._file = new FileModule(baseUrl, authHeaders);
+        this._demo = new DemoModule(baseUrl, authHeaders);
     }
 
     public getCredentials(): KaiStudioCredentials {
-        return this.credentials
+        return this.credentials;
     }
 
-    public fileInstance(): FileInstance {
-        return this._fileInstance
+    /**
+     * Core Module
+     */
+    public core(): CoreModule {
+        return this._core;
     }
 
-    public manageInstance(): ManageInstance {
-        return this._manageInstance
+    /**
+     * Studio Module
+     */
+    public studio(): StudioModule {
+        return this._studio;
     }
 
+    /**
+     * File Module
+     */
+    public file(): FileModule {
+        return this._file;
+    }
+
+    /**
+     * Demo Module
+     */
+    public demo(): DemoModule {
+        return this._demo;
+    }
 }
 
