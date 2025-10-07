@@ -18,25 +18,6 @@ export class InstanceModule {
     }
 
     /**
-     * Get the list of instances under an organization
-     * @param organizationId Organization ID
-     * @returns List of instances
-     */
-    public async list(organizationId: string): Promise<any> {
-        try {
-            const request = await axios({
-                url: `${this.baseUrl}/studio/instance/list`,
-                method: 'POST',
-                headers: this.headers,
-                data: { organization_id: organizationId }
-            });
-            return request.data;
-        } catch (e) {
-            throw e;
-        }
-    }
-
-    /**
      * Create a new instance
      * @param organizationId Organization ID
      * @param name Instance name

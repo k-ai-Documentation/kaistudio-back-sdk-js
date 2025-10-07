@@ -24,14 +24,12 @@ export class KaiStudio {
             baseUrl = this.credentials.host;
         }
 
-        const coreHeaders = {};
-        
         const authHeaders = {};
         if (this.credentials.token) {
             authHeaders['Authorization'] = `Bearer ${this.credentials.token}`;
         }
 
-        this._core = new CoreModule(baseUrl, coreHeaders);
+        this._core = new CoreModule(baseUrl, authHeaders);
         this._studio = new StudioModule(baseUrl, authHeaders);
         this._file = new FileModule(baseUrl, authHeaders);
         this._demo = new DemoModule(baseUrl, authHeaders);

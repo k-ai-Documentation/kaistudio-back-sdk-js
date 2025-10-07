@@ -21,9 +21,12 @@ export class AuthModule {
     public async login(username: string, password: string): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/auth/login`,
+                url: `${this.baseUrl}/core/auth/login`,
                 method: 'POST',
-                headers: this.headers,
+                headers: {
+                    ...this.headers,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
                 data: { username, password }
             });
             return request.data;
@@ -39,7 +42,7 @@ export class AuthModule {
     public async refreshToken(): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/auth/refresh`,
+                url: `${this.baseUrl}/core/auth/refresh-token`,
                 method: 'POST',
                 headers: this.headers
             });

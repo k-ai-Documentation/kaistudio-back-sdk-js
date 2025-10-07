@@ -24,7 +24,7 @@ export class UserModule {
     public async getInfo(): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/user/info`,
+                url: `${this.baseUrl}/core/user/info`,
                 method: 'POST',
                 headers: this.headers
             });
