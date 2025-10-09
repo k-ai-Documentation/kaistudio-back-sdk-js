@@ -132,4 +132,24 @@ export class OrganizationModule {
             throw e;
         }
     }
+
+    /**
+     * Create organization
+     * @param name Organization name
+     * @returns Create result
+     */
+    public async create(name: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/organization/create`,
+                method: 'POST',
+                headers: this.headers,
+                data: { name }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+     
 }
