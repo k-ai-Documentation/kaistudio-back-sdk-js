@@ -31,7 +31,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { organization_id: organizationId, name }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -50,7 +50,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -70,7 +70,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId, name }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -90,7 +90,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId, scenarios }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -109,7 +109,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -128,7 +128,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -147,7 +147,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -174,7 +174,7 @@ export class InstanceModule {
                     search_goal: searchGoal 
                 }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -203,7 +203,7 @@ export class InstanceModule {
                     search_goal: searchGoal 
                 }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -222,7 +222,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -242,7 +242,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { id, instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -262,7 +262,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId, user_id: userId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -282,7 +282,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId, user_id: userId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -301,7 +301,7 @@ export class InstanceModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -335,7 +335,7 @@ export class InstanceModule {
                 },
                 data: formData
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }

@@ -28,7 +28,7 @@ export class DemoModule {
                 method: 'POST',
                 headers: this.headers
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -47,7 +47,7 @@ export class DemoModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }

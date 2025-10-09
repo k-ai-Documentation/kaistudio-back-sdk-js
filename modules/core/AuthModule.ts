@@ -29,7 +29,7 @@ export class AuthModule {
                 },
                 data: { username, password }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -46,7 +46,7 @@ export class AuthModule {
                 method: 'POST',
                 headers: this.headers
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }

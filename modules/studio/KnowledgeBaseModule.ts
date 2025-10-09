@@ -28,7 +28,7 @@ export class KnowledgeBaseModule {
                 method: 'POST',
                 headers: this.headers
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -47,7 +47,7 @@ export class KnowledgeBaseModule {
                 headers: this.headers,
                 data: { kb_type: kbType }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -66,7 +66,7 @@ export class KnowledgeBaseModule {
                 headers: this.headers,
                 data: { kb_type: kbType }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }

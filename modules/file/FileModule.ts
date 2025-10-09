@@ -38,7 +38,7 @@ export class FileModule {
                 },
                 data: formData
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -59,7 +59,7 @@ export class FileModule {
                 data: { instance_id: instanceId, file_name: fileName },
                 responseType: 'blob'
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -79,7 +79,7 @@ export class FileModule {
                 headers: this.headers,
                 data: { instance_id: instanceId, file_name: fileName }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -98,7 +98,7 @@ export class FileModule {
                 headers: this.headers,
                 data: { instance_id: instanceId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }

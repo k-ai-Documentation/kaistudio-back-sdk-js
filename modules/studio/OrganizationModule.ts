@@ -28,7 +28,7 @@ export class OrganizationModule {
                 method: 'POST',
                 headers: this.headers
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -49,7 +49,7 @@ export class OrganizationModule {
                 headers: this.headers,
                 data: { organization_id: organizationId, user_id: userId, is_admin: isAdmin }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -68,7 +68,7 @@ export class OrganizationModule {
                 headers: this.headers,
                 data: { organization_id: organizationId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -88,7 +88,7 @@ export class OrganizationModule {
                 headers: this.headers,
                 data: { organization_id: organizationId, name }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
@@ -107,7 +107,7 @@ export class OrganizationModule {
                 headers: this.headers,
                 data: { organization_id: organizationId }
             });
-            return request.data;
+            return request.data.response;
         } catch (e) {
             throw e;
         }
