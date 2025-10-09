@@ -112,4 +112,24 @@ export class OrganizationModule {
             throw e;
         }
     }
+
+    /**
+     * Check if user is admin of an organization
+     * @param organizationId Organization ID
+     * @param userId User ID
+     * @returns Admin status
+     */
+    public async isAdmin(organizationId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/organization/is_admin`,
+                method: 'POST',
+                headers: this.headers,
+                data: { organization_id: organizationId, user_id: userId }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
