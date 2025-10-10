@@ -56,6 +56,26 @@ export class OrganizationModule {
     }
 
     /**
+     * Remove user from organization
+     * @param organizationId Organization ID
+     * @param userId User ID
+     * @returns Remove result
+     */
+    public async removeUser(organizationId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/organization/remove_user`,
+                method: 'POST',
+                headers: this.headers,
+                data: { organization_id: organizationId, user_id: userId }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
      * Get the list of users in an organization
      * @param organizationId Organization ID
      * @returns List of users
