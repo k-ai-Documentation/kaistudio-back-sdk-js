@@ -41,13 +41,13 @@ export class OrganizationModule {
      * @param isAdmin Whether the user is an admin, defaults to false
      * @returns Add result
      */
-    public async addUser(organizationId: string, userEmail: string, isAdmin: boolean = false): Promise<any> {
+    public async addUser(organizationId: string, userId: string, isAdmin: boolean = false): Promise<any> {
         try {
             const request = await axios({
                 url: `${this.baseUrl}/studio/organization/add-user`,
                 method: 'POST',
                 headers: this.headers,
-                data: { organization_id: organizationId, user_email: userEmail, is_admin: isAdmin }
+                data: { organization_id: organizationId, user_id: userId, is_admin: isAdmin }
             });
             return request.data.response;
         } catch (e) {
