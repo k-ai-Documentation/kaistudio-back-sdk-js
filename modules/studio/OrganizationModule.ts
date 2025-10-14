@@ -44,7 +44,7 @@ export class OrganizationModule {
     public async addUser(organizationId: string, userEmail: string, isAdmin: boolean = false): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/studio/organization/add_user`,
+                url: `${this.baseUrl}/studio/organization/add-user`,
                 method: 'POST',
                 headers: this.headers,
                 data: { organization_id: organizationId, user_email: userEmail, is_admin: isAdmin }
@@ -64,7 +64,7 @@ export class OrganizationModule {
     public async removeUser(organizationId: string, userId: string): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/studio/organization/remove_user`,
+                url: `${this.baseUrl}/studio/organization/remove-user`,
                 method: 'POST',
                 headers: this.headers,
                 data: { organization_id: organizationId, user_id: userId }
@@ -83,7 +83,7 @@ export class OrganizationModule {
     public async listUsers(organizationId: string): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/studio/organization/list_user`,
+                url: `${this.baseUrl}/studio/organization/list-user`,
                 method: 'POST',
                 headers: this.headers,
                 data: { organization_id: organizationId }
@@ -103,7 +103,7 @@ export class OrganizationModule {
     public async changeName(organizationId: string, name: string): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/studio/organization/change_name`,
+                url: `${this.baseUrl}/studio/organization/change-name`,
                 method: 'POST',
                 headers: this.headers,
                 data: { organization_id: organizationId, name }
@@ -122,7 +122,7 @@ export class OrganizationModule {
     public async listInstances(organizationId: string): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/studio/organization/list_instances`,
+                url: `${this.baseUrl}/studio/organization/list-instances`,
                 method: 'POST',
                 headers: this.headers,
                 data: { organization_id: organizationId }
@@ -142,7 +142,7 @@ export class OrganizationModule {
     public async isAdmin(organizationId: string, userId: string): Promise<any> {
         try {
             const request = await axios({
-                url: `${this.baseUrl}/studio/organization/is_admin`,
+                url: `${this.baseUrl}/studio/organization/is-admin`,
                 method: 'POST',
                 headers: this.headers,
                 data: { organization_id: organizationId, user_id: userId }
