@@ -56,6 +56,27 @@ export class OrganizationModule {
     }
 
     /**
+     * Update user in organization
+     * @param organizationId Organization ID
+     * @param userId User ID
+     * @param isAdmin Whether the user is an admin, defaults to false
+     * @returns Update result
+     */
+    public async updateUser(organizationId: string, userId: string, isAdmin: boolean = false): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/organization/update-user`,
+                method: 'POST',
+                headers: this.headers,
+                data: { organization_id: organizationId, user_id: userId, is_admin: isAdmin }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
      * Remove user from organization
      * @param organizationId Organization ID
      * @param userId User ID
