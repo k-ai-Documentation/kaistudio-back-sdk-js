@@ -33,4 +33,71 @@ export class UserModule {
             throw e;
         }
     }
+
+    /**
+     * Add a new user
+     * @param name User name
+     * @param email User email
+     * @returns Newly created user information
+     */
+    public async addUser(name: string, email: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/core/user/add-user`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    name,
+                    email
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Delete a user
+     * @param id User ID
+     * @returns Deletion result
+     */
+    public async deleteUser(id: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/core/user/delete-user`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    id
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Update user password
+     * @param id User ID
+     * @param password New password
+     * @returns Update result
+     */
+    public async updatePassword(id: string, password: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/core/user/update-password`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    id,
+                    password
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
