@@ -192,5 +192,73 @@ export class OrganizationModule {
             throw e;
         }
     }
-     
+
+    /**
+     * Grant user access to KAI Studio
+     * @param organizationId Organization ID
+     * @param userId User ID
+     * @returns Grant result
+     */
+    public async grantUserCanAccessKaistudio(organizationId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/organization/grant-user-can-access-kaistudio`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    organization_id: organizationId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Revoke user access to KAI Studio
+     * @param organizationId Organization ID
+     * @param userId User ID
+     * @returns Revoke result
+     */
+    public async revokeUserCanAccessKaistudio(organizationId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/organization/revoke-user-can-access-kaistudio`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    organization_id: organizationId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Check if user has access to KAI Studio
+     * @param organizationId Organization ID
+     * @param userId User ID
+     * @returns Access status
+     */
+    public async userCanAccessKaistudio(organizationId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/organization/user-can-access-kaistudio`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    organization_id: organizationId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
