@@ -24,7 +24,7 @@ export class KaiStudio {
             baseUrl = this.credentials.host;
         }
 
-        const authHeaders = {};
+        const authHeaders: Record<string, any> = {};
         if (this.credentials.token) {
             authHeaders['Authorization'] = `Bearer ${this.credentials.token}`;
         }
