@@ -58,6 +58,31 @@ export class UserModule {
     }
 
     /**
+     * Add a new user
+     * @param id User id
+     * @param name User name
+     * @param email User email
+     * @returns Newly created user information
+     */
+    public async updateUser(id: string, name: string, email: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/core/user/update-user`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    id,
+                    name,
+                    email
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
      * Delete a user
      * @param id User ID
      * @returns Deletion result
