@@ -73,6 +73,7 @@ export class InstanceModule {
         } catch (e) {
             throw e;
         }
+    }
 
     /**
      * Update instance name
