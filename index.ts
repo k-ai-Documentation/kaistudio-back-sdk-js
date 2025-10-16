@@ -18,7 +18,7 @@ export class KaiStudio {
 
     constructor(credentials: KaiStudioCredentials) {
         this.credentials = credentials;
-        let baseUrl = 'https://api.kai-studio.ai/';
+        let baseUrl = 'https://back.kai-studio.ai/';
 
         if (this.credentials.host) {
             baseUrl = this.credentials.host;
