@@ -38,9 +38,9 @@ export class InstanceModule {
     }
 
     /**
-     * Get instance details
+     * Get instance configuration
      * @param instanceId Instance ID
-     * @returns Instance details
+     * @returns Instance configuration
      */
     public async get(instanceId: string): Promise<any> {
         try {
@@ -55,6 +55,24 @@ export class InstanceModule {
             throw e;
         }
     }
+
+    /**
+     * Get instance detail
+     * @param instanceId Instance ID
+     * @returns Instance detail
+     */
+    public async getDetail(instanceId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/instance/get-instance-detail`,
+                method: 'POST',
+                headers: this.headers,
+                data: { instance_id: instanceId }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
 
     /**
      * Update instance name
