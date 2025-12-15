@@ -38,9 +38,10 @@ export class UserModule {
      * Add a new user
      * @param name User name
      * @param email User email
+     * @param organization_id organization id
      * @returns Newly created user information
      */
-    public async addUser(name: string, email: string): Promise<any> {
+    public async addUser(name: string, email: string, organization_id: string): Promise<any> {
         try {
             const request = await axios({
                 url: `${this.baseUrl}/core/user/add-user`,
@@ -48,7 +49,8 @@ export class UserModule {
                 headers: this.headers,
                 data: {
                     name,
-                    email
+                    email,
+                    organization_id
                 }
             });
             return request.data.response;
@@ -62,9 +64,10 @@ export class UserModule {
      * @param id User id
      * @param name User name
      * @param email User email
+     * @param organization_id organization id
      * @returns Newly created user information
      */
-    public async updateUser(id: string, name: string, email: string): Promise<any> {
+    public async updateUser(id: string, name: string, email: string, organization_id: string): Promise<any> {
         try {
             const request = await axios({
                 url: `${this.baseUrl}/core/user/update-user`,
@@ -73,7 +76,8 @@ export class UserModule {
                 data: {
                     id,
                     name,
-                    email
+                    email,
+                    organization_id
                 }
             });
             return request.data.response;
@@ -85,16 +89,18 @@ export class UserModule {
     /**
      * Delete a user
      * @param id User ID
+     * @param organization_id organization id
      * @returns Deletion result
      */
-    public async deleteUser(id: string): Promise<any> {
+    public async deleteUser(id: string, organization_id: string): Promise<any> {
         try {
             const request = await axios({
                 url: `${this.baseUrl}/core/user/delete-user`,
                 method: 'POST',
                 headers: this.headers,
                 data: {
-                    id
+                    id,
+                    organization_id
                 }
             });
             return request.data.response;
