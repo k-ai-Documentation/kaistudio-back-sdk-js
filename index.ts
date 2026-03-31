@@ -2,6 +2,7 @@ import {CoreModule} from "./modules/core/CoreModule";
 import {StudioModule} from "./modules/studio/StudioModule";
 import {FileModule} from "./modules/file/FileModule";
 import {DemoModule} from "./modules/demo/DemoModule";
+import {AuditModule} from "./modules/audit/AuditModule";
 
 export interface KaiStudioCredentials {
     host?: string;
@@ -15,6 +16,7 @@ export class KaiStudio {
     private readonly _studio: StudioModule;
     private readonly _file: FileModule;
     private readonly _demo: DemoModule;
+    private readonly _audit: AuditModule;
 
     constructor(credentials: KaiStudioCredentials) {
         this.credentials = credentials;
@@ -65,6 +67,13 @@ export class KaiStudio {
      */
     public demo(): DemoModule {
         return this._demo;
+    }
+
+    /**
+     * Audit Module
+     */
+    public audit(): AuditModule {
+        return this._audit;
     }
 }
 
