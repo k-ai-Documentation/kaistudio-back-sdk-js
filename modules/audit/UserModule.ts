@@ -155,4 +155,27 @@ export class UserModule {
             throw e;
         }
     }
+
+    /**
+     * check list user audit instance in an organization
+     * @param organizationId organization id
+     * @param userId user id
+     * @returns boolean
+     */
+    public async listUserInstances(organizationId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/audit/user/list-user-instances`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    organization_id: organizationId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
