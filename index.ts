@@ -35,6 +35,7 @@ export class KaiStudio {
         this._studio = new StudioModule(baseUrl, authHeaders);
         this._file = new FileModule(baseUrl, authHeaders);
         this._demo = new DemoModule(baseUrl, authHeaders);
+        this._audit = new AuditModule(baseUrl, authHeaders);
     }
 
     public getCredentials(): KaiStudioCredentials {
