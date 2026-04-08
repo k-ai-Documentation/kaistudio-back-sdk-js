@@ -65,6 +65,31 @@ export class UserModule {
     }
 
     /**
+     * Add a new user to instance
+     * @param instanceId
+     * @param username
+     * @param email user email
+     * @returns added result
+     */
+    public async addUserByKaiId(instanceId: string, username: string, email: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/audit/user/add-user-to-instance-by-kai-id`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    instance_id: instanceId,
+                    username: username,
+                    email: email
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
      * remove user from an audit instance
      * @returns updated result
      * @param instanceId
@@ -74,6 +99,29 @@ export class UserModule {
         try {
             const request = await axios({
                 url: `${this.baseUrl}/audit/user/remove-user-from-instance`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    instance_id: instanceId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * remove user from an audit instance
+     * @returns updated result
+     * @param instanceId
+     * @param userId
+     */
+    public async removeUserFromInstanceByKaiId(instanceId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/audit/user/remove-user-from-instance-by-kai-id`,
                 method: 'POST',
                 headers: this.headers,
                 data: {
@@ -111,6 +159,29 @@ export class UserModule {
     }
 
     /**
+     * Set to admin of an audit instance
+     * @returns updated result
+     * @param instanceId
+     * @param userId
+     */
+    public async setUserAdminForInstanceByKaiId(instanceId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/audit/user/set-user-admin-for-instance-by-kai-id`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    instance_id: instanceId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
      * set to normal user for an audit instance
      * @param instanceId instance id
      * @param userId user id
@@ -134,6 +205,29 @@ export class UserModule {
     }
 
     /**
+     * set to normal user for an audit instance
+     * @param instanceId instance id in kai
+     * @param userId user id
+     * @returns updated result
+     */
+    public async setUserNormalForInstanceByKaiId(instanceId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/audit/user/set-user-normal-for-instance-by-kai-id`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    instance_id: instanceId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
      * check user is instance admin
      * @param instanceId instance id
      * @param userId user id
@@ -143,6 +237,29 @@ export class UserModule {
         try {
             const request = await axios({
                 url: `${this.baseUrl}/audit/user/user-is-admin-for-instance`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    instance_id: instanceId,
+                    user_id: userId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * check user is instance admin
+     * @param instanceId instance id in kai
+     * @param userId user id
+     * @returns boolean
+     */
+    public async isInstanceAdminByKaiId(instanceId: string, userId: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/audit/user/user-is-admin-for-instance-by-kai-id`,
                 method: 'POST',
                 headers: this.headers,
                 data: {
