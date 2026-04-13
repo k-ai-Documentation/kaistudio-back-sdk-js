@@ -1,6 +1,6 @@
 # sdk-js-kaistudio
 
-SDK js/ts enables developers to efficiently manage files, instances, organizations, and users in KAI Studio. This toolkit is designed to streamline the integration of KAI Studio functionalities into JS/TS-based projects.
+SDK js/ts enables developers to efficiently manage instances, organizations, users, and global administration in KAI Studio. This toolkit is designed to streamline the integration of KAI Studio functionalities into JS/TS-based projects.
 
 ## Installation
 
@@ -19,29 +19,16 @@ import { KaiStudio } from 'sdk-js-kaistudio';
 
 const kaiStudio = new KaiStudio({
     host: 'https://back.kai-studio.ai', // Optional: defaults to https://back.kai-studio.ai
-    token: "YOUR_ACCESS_TOKEN",         // Optional: required for authenticated endpoints
+    token: "YOUR_ACCESS_TOKEN",         // Required for authenticated endpoints
 });
-```
-
-### Authentication
-
-If you don't have a token yet, you can login using the Core module:
-
-```typescript
-const loginResponse = await kaiStudio.core().auth().login("username", "password");
-// Use the token from loginResponse for subsequent requests
 ```
 
 ## Modules Structure
 
-The SDK is organized into four main modules accessible through the main `KaiStudio` instance:
+The SDK is organized into three main modules accessible through the main `KaiStudio` instance:
 
 ### 1. Core Module (`kaiStudio.core()`)
-Handles fundamental operations like authentication and user management.
-
-**Auth** (`.auth()`):
-- `login(username, password)`
-- `refreshToken()`
+Handles user management operations.
 
 **User** (`.user()`):
 - `getInfo()`: Get current user details.
@@ -49,23 +36,30 @@ Handles fundamental operations like authentication and user management.
 - `updateUser(id, name, email, orgId)`
 - `deleteUser(id, orgId)`
 - `updatePassword(id, password)`
+- `setUserAdmin(id, isGlobalAdmin?, organizationId?)`: Set global admin or org admin status.
 
 ### 2. Studio Module (`kaiStudio.studio()`)
 The primary module for managing KAI Studio resources including Organizations, Instances, and Knowledge Bases.
 
 **Organization** (`.organization()`):
-- `list()`: List organizations user belongs to.
-- `create(name)`: Create a new organization.
+- `list()`: List organizations.
+- `create(name)`
 - `changeName(orgId, name)`
 - `listUsers(orgId)`
 - `addUser(orgId, userId, isAdmin)`
+- `updateUser(orgId, userId, isAdmin)`
 - `removeUser(orgId, userId)`
 - `listInstances(orgId)`
+- `isAdmin(orgId, userId)`
+- `grantUserCanAccessKaistudio(orgId, userId)`
+- `revokeUserCanAccessKaistudio(orgId, userId)`
+- `userCanAccessKaistudio(orgId, userId)`
 
 **Instance** (`.instance()`):
 - `create(orgId, name)`
 - `get(instanceId)`
 - `getDetail(instanceId)`
+- `updateDetail(instanceId, name, extraProperties, logoFile?)`
 - `delete(instanceId)`
 - `updateName(instanceId, name)`
 - `setScenarios(instanceId, scenarios)`: Scenarios can be `AUDIT` or `SEARCH`.
@@ -79,29 +73,24 @@ The primary module for managing KAI Studio resources including Organizations, In
 - **Demo Access**:
   - `grantUserAccessDemo(instanceId, userId)`
   - `revokeUserAccessDemo(instanceId, userId)`
+  - `getAllUsersAccessDemo(instanceId)`
 
 **Knowledge Base** (`.knowledgeBase()`):
 - `listAvailableKbType()`
 - `getCredentialsForByType(type)`
+- `getKbTypeFromInternalType(type)`
 
-### 3. File Module (`kaiStudio.file()`)
-Manages file operations for instances.
+### 3. Global Admin Module (`kaiStudio.globalAdmin()`)
+Handles global platform administration. Requires global admin role.
 
-- `list(instanceId)`
-- `upload(file, instanceId)`: Uploads a `File` object.
-- `download(instanceId, fileName)`
-- `delete(instanceId, fileName)`
+- `listUsers(offset?, limit?)`
+- `listApps()`
+- `listAppsForUser(userId)`
+- `addAppForUser(userId, appId)`
+- `removeAppForUser(userId, appId)`
+- `toggleUserActive(userId)`
 
-### 4. Demo Module (`kaiStudio.demo()`)
-Handles operations related to demo instances.
-
-- `listInstances()`
-- `listInstancesForUserAndOrg(userId, orgId)`
-- `getInstanceDetail(instanceId)`
-
-## Usage Examples
-
-Here is a comprehensive example showing various capabilities:
+## Usage Example
 
 ```typescript
 import { KaiStudio } from 'sdk-js-kaistudio';
@@ -109,7 +98,7 @@ import { KaiStudio } from 'sdk-js-kaistudio';
 async function main() {
     // 1. Initialize
     const kaiStudio = new KaiStudio({
-        host: 'http://localhost:4000',
+        host: 'https://back.kai-studio.ai',
         token: "YOUR_TOKEN_HERE"
     });
 
@@ -120,14 +109,11 @@ async function main() {
     // 3. Organization Operations
     const orgs = await kaiStudio.studio().organization().list();
     const orgId = orgs[0].id;
-    console.log('Organizations:', orgs);
 
     // 4. Instance Operations
-    // Create Instance
     const instance = await kaiStudio.studio().instance().create(orgId, "My New Instance");
     const instanceId = instance.id;
-    
-    // Set Scenarios
+
     await kaiStudio.studio().instance().setScenarios(instanceId, ["SEARCH"]);
 
     // 5. Knowledge Base
@@ -135,7 +121,6 @@ async function main() {
         "client": "client_id",
         "spHost": "sharepoint.com",
         "siteName": "Tech",
-        // ... other options
     }, {
         "subject": "Description of the subject"
     });
@@ -143,11 +128,7 @@ async function main() {
     const kbs = await kaiStudio.studio().instance().listKb(instanceId);
     console.log('Knowledge Bases:', kbs);
 
-    // 6. File Operations
-    const files = await kaiStudio.file().list(instanceId);
-    console.log('Files:', files);
-
-    // 7. Cleanup
+    // 6. Cleanup
     await kaiStudio.studio().instance().delete(instanceId);
 }
 
