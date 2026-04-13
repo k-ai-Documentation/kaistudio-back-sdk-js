@@ -1,12 +1,10 @@
 import {CoreModule} from "./modules/core/CoreModule";
 import {StudioModule} from "./modules/studio/StudioModule";
-import {FileModule} from "./modules/file/FileModule";
-import {DemoModule} from "./modules/demo/DemoModule";
-import {AuditModule} from "./modules/audit/AuditModule";
+import {GlobalAdminModule} from "./modules/globalAdmin/GlobalAdminModule";
 
 export interface KaiStudioCredentials {
     host?: string;
-    token?: string; // core module do not need token
+    token?: string;
 }
 
 export class KaiStudio {
@@ -14,9 +12,7 @@ export class KaiStudio {
     private readonly credentials: KaiStudioCredentials;
     private readonly _core: CoreModule;
     private readonly _studio: StudioModule;
-    private readonly _file: FileModule;
-    private readonly _demo: DemoModule;
-    private readonly _audit: AuditModule;
+    private readonly _globalAdmin: GlobalAdminModule;
 
     constructor(credentials: KaiStudioCredentials) {
         this.credentials = credentials;
@@ -33,48 +29,22 @@ export class KaiStudio {
 
         this._core = new CoreModule(baseUrl, authHeaders);
         this._studio = new StudioModule(baseUrl, authHeaders);
-        this._file = new FileModule(baseUrl, authHeaders);
-        this._demo = new DemoModule(baseUrl, authHeaders);
-        this._audit = new AuditModule(baseUrl, authHeaders);
+        this._globalAdmin = new GlobalAdminModule(baseUrl, authHeaders);
     }
 
     public getCredentials(): KaiStudioCredentials {
         return this.credentials;
     }
 
-    /**
-     * Core Module
-     */
     public core(): CoreModule {
         return this._core;
     }
 
-    /**
-     * Studio Module
-     */
     public studio(): StudioModule {
         return this._studio;
     }
 
-    /**
-     * File Module
-     */
-    public file(): FileModule {
-        return this._file;
-    }
-
-    /**
-     * Demo Module
-     */
-    public demo(): DemoModule {
-        return this._demo;
-    }
-
-    /**
-     * Audit Module
-     */
-    public audit(): AuditModule {
-        return this._audit;
+    public globalAdmin(): GlobalAdminModule {
+        return this._globalAdmin;
     }
 }
-
