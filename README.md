@@ -1,11 +1,11 @@
-# sdk-js-kaistudio
+# kaistudio-back-sdk-js
 
 SDK js/ts enables developers to efficiently manage instances, organizations, users, and global administration in KAI Studio. This toolkit is designed to streamline the integration of KAI Studio functionalities into JS/TS-based projects.
 
 ## Installation
 
 ```bash
-npm install git+https://github.com/k-ai-Documentation/sdk-js-kaistudio.git --save
+npm install git+https://github.com/k-ai-Documentation/kaistudio-back-sdk-js.git --save
 ```
 
 ## Quick Start
@@ -15,7 +15,7 @@ npm install git+https://github.com/k-ai-Documentation/sdk-js-kaistudio.git --sav
 To start using the SDK, you need to initialize the `KaiStudioBackApi` class. You can provide a custom host and an authentication token.
 
 ```typescript
-import { KaiStudioBackApi } from 'sdk-js-kaistudio';
+import { KaiStudioBackApi } from 'kaistudio-back-sdk-js';
 
 const kaiStudio = new KaiStudioBackApi({
     host: 'https://back.kai-studio.ai', // Optional: defaults to https://back.kai-studio.ai
@@ -93,7 +93,7 @@ Handles global platform administration. Requires global admin role.
 ## Usage Example
 
 ```typescript
-import { KaiStudioBackApi } from 'sdk-js-kaistudio';
+import { KaiStudioBackApi } from 'kaistudio-back-sdk-js';
 
 async function main() {
     // 1. Initialize
