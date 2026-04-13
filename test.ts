@@ -1,7 +1,7 @@
-import { KaiStudio } from './index';
+import { KaiStudioBackApi } from './index';
 
 async function init() {
-    const kaiStudio = new KaiStudio({
+    const kaiStudio = new KaiStudioBackApi({
         host: 'http://localhost:4000',
         token: "",
     });

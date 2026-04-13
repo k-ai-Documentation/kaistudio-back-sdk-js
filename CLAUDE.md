@@ -24,10 +24,10 @@ This is a TypeScript SDK for the KAI Studio API, published via npm from GitHub. 
 
 ### Entry Point
 
-`index.ts` exports the `KaiStudio` class, which is a **facade** over 3 modules. It accepts `{ host?, token? }` at construction and passes `baseUrl` + `Authorization: Bearer` headers to each module.
+`index.ts` exports the `KaiStudioBackApi` class, which is a **facade** over 3 modules. It accepts `{ host?, token? }` at construction and passes `baseUrl` + `Authorization: Bearer` headers to each module.
 
 ```typescript
-const kai = new KaiStudio({ host: 'https://back.kai-studio.ai', token: 'TOKEN' });
+const kai = new KaiStudioBackApi({ host: 'https://back.kai-studio.ai', token: 'TOKEN' });
 kai.core()         // CoreModule
 kai.studio()       // StudioModule
 kai.globalAdmin()  // GlobalAdminModule
@@ -36,7 +36,7 @@ kai.globalAdmin()  // GlobalAdminModule
 ### Module Hierarchy
 
 ```
-KaiStudio (facade)
+KaiStudioBackApi (facade)
 ├── CoreModule              → modules/core/
 │   └── UserModule            (getInfo, addUser, updateUser, deleteUser, updatePassword, setUserAdmin)
 ├── StudioModule            → modules/studio/

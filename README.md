@@ -12,12 +12,12 @@ npm install git+https://github.com/k-ai-Documentation/sdk-js-kaistudio.git --sav
 
 ### Initialization
 
-To start using the SDK, you need to initialize the `KaiStudio` class. You can provide a custom host and an authentication token.
+To start using the SDK, you need to initialize the `KaiStudioBackApi` class. You can provide a custom host and an authentication token.
 
 ```typescript
-import { KaiStudio } from 'sdk-js-kaistudio';
+import { KaiStudioBackApi } from 'sdk-js-kaistudio';
 
-const kaiStudio = new KaiStudio({
+const kaiStudio = new KaiStudioBackApi({
     host: 'https://back.kai-studio.ai', // Optional: defaults to https://back.kai-studio.ai
     token: "YOUR_ACCESS_TOKEN",         // Required for authenticated endpoints
 });
@@ -25,7 +25,7 @@ const kaiStudio = new KaiStudio({
 
 ## Modules Structure
 
-The SDK is organized into three main modules accessible through the main `KaiStudio` instance:
+The SDK is organized into three main modules accessible through the main `KaiStudioBackApi` instance:
 
 ### 1. Core Module (`kaiStudio.core()`)
 Handles user management operations.
@@ -93,11 +93,11 @@ Handles global platform administration. Requires global admin role.
 ## Usage Example
 
 ```typescript
-import { KaiStudio } from 'sdk-js-kaistudio';
+import { KaiStudioBackApi } from 'sdk-js-kaistudio';
 
 async function main() {
     // 1. Initialize
-    const kaiStudio = new KaiStudio({
+    const kaiStudio = new KaiStudioBackApi({
         host: 'https://back.kai-studio.ai',
         token: "YOUR_TOKEN_HERE"
     });
