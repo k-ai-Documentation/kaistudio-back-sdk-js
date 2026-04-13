@@ -2,19 +2,19 @@ import {CoreModule} from "./modules/core/CoreModule";
 import {StudioModule} from "./modules/studio/StudioModule";
 import {GlobalAdminModule} from "./modules/globalAdmin/GlobalAdminModule";
 
-export interface KaiStudioBackApiCredentials {
+export interface KaiStudioCredentials {
     host?: string;
     token?: string;
 }
 
 export class KaiStudioBackApi {
 
-    private readonly credentials: KaiStudioBackApiCredentials;
+    private readonly credentials: KaiStudioCredentials;
     private readonly _core: CoreModule;
     private readonly _studio: StudioModule;
     private readonly _globalAdmin: GlobalAdminModule;
 
-    constructor(credentials: KaiStudioBackApiCredentials) {
+    constructor(credentials: KaiStudioCredentials) {
         this.credentials = credentials;
         let baseUrl = 'https://back.kai-studio.ai';
 
@@ -32,7 +32,7 @@ export class KaiStudioBackApi {
         this._globalAdmin = new GlobalAdminModule(baseUrl, authHeaders);
     }
 
-    public getCredentials(): KaiStudioBackApiCredentials {
+    public getCredentials(): KaiStudioCredentials {
         return this.credentials;
     }
 
