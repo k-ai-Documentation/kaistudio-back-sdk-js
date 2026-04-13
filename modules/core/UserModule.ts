@@ -131,4 +131,29 @@ export class UserModule {
             throw e;
         }
     }
+
+    /**
+     * Set user admin status
+     * @param id User ID
+     * @param isGlobalAdmin Whether to grant global admin role
+     * @param organizationId Optional organization scope
+     * @returns Update result
+     */
+    public async setUserAdmin(id: string, isGlobalAdmin?: boolean, organizationId?: string): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/core/user/set-user-admin`,
+                method: 'POST',
+                headers: this.headers,
+                data: {
+                    id,
+                    is_global_admin: isGlobalAdmin,
+                    organization_id: organizationId
+                }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
