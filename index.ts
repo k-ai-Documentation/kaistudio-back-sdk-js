@@ -5,6 +5,7 @@ import {GlobalAdminModule} from "./modules/globalAdmin/GlobalAdminModule";
 export interface KaiStudioCredentials {
     host?: string;
     token?: string;
+    apiHost?: string
 }
 
 export class KaiStudioBackApi {
@@ -25,6 +26,10 @@ export class KaiStudioBackApi {
         const authHeaders: Record<string, any> = {};
         if (this.credentials.token) {
             authHeaders['Authorization'] = `Bearer ${this.credentials.token}`;
+        }
+
+        if (credentials.apiHost) {
+            authHeaders["api-host"] = credentials.apiHost;
         }
 
         this._core = new CoreModule(baseUrl, authHeaders);
