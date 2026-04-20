@@ -1,6 +1,6 @@
 {
   "name": "kaistudio-back-sdk-js",
-  "version": "20251215",
+  "version": "20260420",
   "description": "kai studio SDK in JS/TS",
   "main": "index.js",
   "scripts": {
