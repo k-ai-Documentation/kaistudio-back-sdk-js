@@ -186,11 +186,11 @@ export class InstanceModule {
                 url: `${this.baseUrl}/studio/instance/add-kb`,
                 method: 'POST',
                 headers: this.headers,
-                data: { 
-                    instance_id: instanceId, 
-                    type, 
-                    options, 
-                    search_goal: searchGoal 
+                data: {
+                    instance_id: instanceId,
+                    type,
+                    options,
+                    search_goal: searchGoal
                 }
             });
             return request.data.response;
@@ -214,12 +214,12 @@ export class InstanceModule {
                 url: `${this.baseUrl}/studio/instance/update-kb`,
                 method: 'POST',
                 headers: this.headers,
-                data: { 
-                    id, 
-                    instance_id: instanceId, 
-                    type, 
-                    options, 
-                    search_goal: searchGoal 
+                data: {
+                    id,
+                    instance_id: instanceId,
+                    type,
+                    options,
+                    search_goal: searchGoal
                 }
             });
             return request.data.response;
@@ -319,6 +319,32 @@ export class InstanceModule {
                 method: 'POST',
                 headers: this.headers,
                 data: { instance_id: instanceId }
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    public async getAuditHost(): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/instance/get-audit-host`,
+                method: 'POST',
+                headers: this.headers
+            });
+            return request.data.response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    public async getApiHost(): Promise<any> {
+        try {
+            const request = await axios({
+                url: `${this.baseUrl}/studio/instance/get-api-host`,
+                method: 'POST',
+                headers: this.headers
             });
             return request.data.response;
         } catch (e) {
