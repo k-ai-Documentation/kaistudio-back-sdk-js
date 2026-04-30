@@ -1,6 +1,7 @@
 import {CoreModule} from "./modules/core/CoreModule";
 import {StudioModule} from "./modules/studio/StudioModule";
 import {GlobalAdminModule} from "./modules/globalAdmin/GlobalAdminModule";
+import {AuditModule} from "./modules/audit/AuditModule";
 
 export interface KaiStudioCredentials {
     host?: string;
@@ -14,6 +15,7 @@ export class KaiStudioBackApi {
     private readonly _core: CoreModule;
     private readonly _studio: StudioModule;
     private readonly _globalAdmin: GlobalAdminModule;
+    private readonly _audit: AuditModule;
 
     constructor(credentials: KaiStudioCredentials) {
         this.credentials = credentials;
@@ -35,6 +37,7 @@ export class KaiStudioBackApi {
         this._core = new CoreModule(baseUrl, authHeaders);
         this._studio = new StudioModule(baseUrl, authHeaders);
         this._globalAdmin = new GlobalAdminModule(baseUrl, authHeaders);
+        this._audit = new AuditModule(baseUrl, authHeaders);
     }
 
     public getCredentials(): KaiStudioCredentials {
@@ -51,5 +54,9 @@ export class KaiStudioBackApi {
 
     public globalAdmin(): GlobalAdminModule {
         return this._globalAdmin;
+    }
+
+    public audit(): AuditModule {
+        return this._audit;
     }
 }
